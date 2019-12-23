@@ -1,0 +1,74 @@
+<section>
+    <h2>Registro de ponto</h2>
+
+    <div class="form-line form-line--center">
+        <div class="form-field">
+
+            <label class="form-field__label form-field__label--center">Colaborador:</label>
+            <select id="inform-worker-select" class="form-field__select" [(ngModel)]="id" (ngModelChange)="retrieveWorker(id)">
+                <option id="inform-worker-0-option" [value]="0">Nenhum selecionado</option>
+                <option id="inform-worker-{{id}}-option" *ngFor="let worker of workers; let i = index" [value]="worker.id">{{worker.name}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+
+            <label class="form-field__label form-field__label--center">Mês:</label>
+            <select id="inform-month-select" class="form-field__select" [(ngModel)]="month"
+                (ngModelChange)="retrieveWorkDaysForMonth(month, year)">
+                <option id="inform-month-{{i}}-option" *ngFor="let month of months; let i = index" [value]="i">{{month}}</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label class="form-field__label form-field__label--center">Ano:</label>
+            <input type="number" max="{{today.year()}}" min="2000" class="form-field__select" [(ngModel)]="year"
+                (ngModelChange)="retrieveWorkDaysForMonth(month, year)">
+        </div>
+    </div>
+
+    <table class="workday-logs">
+        <tbody class="workday-logs__tbody" *ngFor="let workday of workdays">
+            <tr class="workday-logs__tr">
+                <th class="workday-logs__td workday-logs__td--date-reference">
+                    <h3 class="workday-logs__h3">dia {{workday.str_date}}</h3>
+                    <h1 class="workday-logs__h1">Horas trabalhadas: <strong>{{workday.str_workedHours}}</strong></h1>
+                </th>
+            </tr>
+
+            <tr class="workday-logs__tr" *ngFor="let entry of workday.entries">
+
+                <td class="workday-logs__td workday-logs__td--registered-time" *ngIf="!entry.isUnderEdition">
+                    {{entry.str_time}} - {{entry.entryType == 0 ? 'Entrada' : 'Saída'}}
+                </td>
+
+                <td *ngIf="entry.isUnderEdition">
+                    <div class="form-line">
+                        <div class="form-field form-field--same-line">
+                            <label class="form-field__label" for="inform-checkin-input">Hora:</label>
+                            <input [(ngModel)]="entry.str_time" name="str_time"
+                                class="form-field__input form-field__input--group-within" id="inform-checkin-input"
+                                type="time">
+                            <button (click)="removeEntry(workday, entry)"
+                                class="form-field__btn form-field__btn--group-within"
+                                id="inform-checkin-btn">Cancelar</button>
+                            <button (click)="saveEntry(workday, entry)"
+                                class="form-field__btn form-field__btn--group-end"
+                                id="save-checkin-btn">Salvar</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="workday-logs__tr">
+                <td class="workday-logs__td--registered-time">
+                    <button class="form-field__btn" id="new-checkin-btn" (click)="newEntry(workday)">Novo
+                        registro</button>
+                </td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+
+
+</section>

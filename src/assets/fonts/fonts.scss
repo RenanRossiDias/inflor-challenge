@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    font-style: normal;
+    src:  url("./HelveticaNeueLt.ttf") format("truetype"),
+          url("./HelveticaNeueLt.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-style: normal;
+    src:  url("./HelveticaNeueRg.ttf") format("truetype"),
+          url("./HelveticaNeueRg.woff") format("woff");
+  } 
+  @font-face {
+    font-weight: bold;
+    font-style: bold;
+    font-family: "Helvetica Neue";
+    src:  url("./HelveticaNeueBd.ttf") format("truetype"),
+          url("./HelveticaNeueBd.woff") format("woff");
+  }

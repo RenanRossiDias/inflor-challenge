@@ -1,0 +1,45 @@
+<section>
+    <h2>Novo colaborador</h2>
+
+    <form id="register-worker-form" [(formGroup)]="registerWorkerForm" (ngSubmit)="submitWorkerForm()">
+
+        <div class="form-line form-line--center">
+            <div class="form-field">
+                <label class="form-field__label" for="inform-name-input">Nome:</label>
+                <input class="form-field__input" id="inform-name-input" formControlName="name" type="text" name="name"
+                    required>
+            </div>
+            <div class="form-field">
+                <label class="form-field__label" for="inform-admission-input">Data de admissão:</label>
+                <input class="form-field__input" id="inform-admission-input" formControlName="admission" type="date" name="admission" required>
+            </div>
+        </div>
+
+        <div class="form-line form-line--center">
+            <div class="form-field">
+                <label class="form-field__label" for="inform-occupation-input">Ocupação:</label>
+                <input class="form-field__input" id="inform-occupation-input" formControlName="occupation" type="text"
+                    name="occupation" required>
+            </div>
+            <div class="form-field">
+                <label class="form-field__label" for="inform-working-hours-input">Carga horária diária:</label>
+                <input class="form-field__input" id="inform-working-hours-input" formControlName="workingHours"
+                    type="number" max="24" min="0" name="workingHours" required>
+            </div>
+        </div>
+
+        <div class="action-container">
+            <button id="submit-btn" type="submit" class="action-container__btn action-container__btn--main-action"
+                [disabled]="!registerWorkerForm.valid"
+                [ngClass]="{'action-container__btn--disabled' : !registerWorkerForm.valid}">Enviar agora</button>
+        </div>
+
+        <div class="action-container">
+            <button id="return-button" [routerLink]="['..']"  type="button" class="action-container__btn action-container__btn--main-action">Retornar</button>
+        </div>
+
+       
+    </form>
+
+
+</section>
